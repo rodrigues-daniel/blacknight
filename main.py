@@ -228,10 +228,32 @@ class BlackNight(QWidget):
 
     self.senhas = []
 
-    with open(arquivo, 'r') as linhas:
-      for line in linhas:
-        self.senhas.append(line)
-      linhas.close()
+    print(os.path.dirname(os.path.abspath(__file__)) + 'arquivos/senhas.txt', 'r')
+
+    try:
+
+
+      if arquivo != None:
+
+        with open(arquivo, 'r') as linhas:
+          for line in linhas:
+             self.senhas.append(line)
+          linhas.close()
+
+      else:
+
+
+
+        with open(os.path.dirname(os.path.abspath(__file__)) + '\arquivos\senhas.txt', 'r')as linhas:
+          for line in linhas:
+            self.senhas.append(line)
+          linhas.close()
+
+
+    except IOError:
+      print("Não Foi Possivel Abrir Arquivo para leitura")
+      print("Arquivo Não Encontrado")
+
 
   def escrever(self, redes):
     self.txtDisplay.clear()
